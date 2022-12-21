@@ -3,7 +3,7 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from models import db
 from routes.main import bpMain
-
+from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 import os
 
