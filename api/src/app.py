@@ -5,7 +5,10 @@ from models import db
 from routes.main import bpMain
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
+from routes.favorites import bpFav
+from routes.users import bpUsers
 import os
+
 
 load_dotenv()
 app = Flask(__name__)
@@ -23,3 +26,5 @@ if __name__ == '__main__':
     app.run()
 
 app.register_blueprint(bpMain)
+app.register_blueprint(bpUsers, url_prefix='/api')
+app.register_blueprint(bpFav, url_prefix='/api')
