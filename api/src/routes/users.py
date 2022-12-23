@@ -37,3 +37,10 @@ def get_user():
     }
 
     return jsonify(credentials)
+
+
+@bpUsers.route('/user<int:id>', methods=['GET'])
+@jwt_required()
+def get_user_by_id(id):
+    user = User.query.get(id)
+    return jsonify(user.serialize()), 200
