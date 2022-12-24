@@ -44,7 +44,8 @@ class Scripts(db.Model):
     title = db.Column(db.String(120), unique=False, nullable=False)
     year = db.Column(db.String(50), unique=False, nullable=False)
     logline = db.Column(db.String(500), unique=False, nullable=False)
-    cover = db.Column(db.String(500), unique=False, nullable=False)
+    cover = db.Column(db.String(250), unique=False, nullable=False)
+    url = db.Column(db.String(250), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.id', ondelete='CASCADE'), nullable=False)
 
@@ -55,6 +56,7 @@ class Scripts(db.Model):
             'year': self.year,
             'logline': self.logline,
             'cover': self.cover,
+            'url': self.url,
             'user_id': self.user_id,
         }
 
