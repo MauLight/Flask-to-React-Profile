@@ -7,6 +7,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
+    biography = db.Column(db.String(500), unique=False, nullable=True)
     myscripts = db.relationship(
         'Scripts', cascade='all, delete', backref='user')
 
