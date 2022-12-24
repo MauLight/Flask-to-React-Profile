@@ -1,0 +1,122 @@
+@import "../src/styles/animation.css";
+
+body {
+  margin: 0;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+footer {
+  text-align: center;
+  height: 60px;
+  color: aliceblue;
+  background-color: #333333;
+  padding: 20px 36px;
+  box-shadow: 0px -2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+}
+
+li {
+  list-style: none;
+}
+
+.page {
+  height: 100vh;
+  background-image: url('../src/img/1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile {
+  height: 100vh;
+  margin-top: 84px !important;
+}
+
+.page-r {
+  height: 100vh;
+  background-image: url('../src/img/1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login {
+  height: 48%;
+  margin-top: 84px !important;
+}
+
+.nav-link,
+h1,
+h4,
+h5,
+.title,
+.log {
+  font-family: 'Josefin Sans', sans-serif;
+  color: #333333;
+}
+
+form {
+  position: static;
+}
+
+.alert {
+  font-size: 12px !important;
+  padding: 0% !important;
+  margin: 0% !important;
+}
+
+.frame {
+  display: contents !important;
+}
+
+.trip_card {
+
+  box-shadow: 18px 18px 30px #bcbcbc,
+    -18px -18px 30px #ffffff;
+    background-image: linear-gradient(to right top, #333333, #333333, #333333, #333333, #333333);
+    color: #ffffff;
+}
+
+.trip_text {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.underline {
+  border-bottom: 1px solid #000;
+  padding-left: 100px !important;
+  padding-right:100px !important;
+}
+.underline2 {
+  padding-left: 100px !important;
+  padding-right:100px !important;
+}
+
+.navbar {
+  padding: 35px !important;
+
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+}
+
+.logline {
+  font-size: 12px;
+}
+
+.cover {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+.cover:hover {
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+}
+
+.editor_btn:hover {
+  background-color: #333333 !important;
+  color: white !important;
+}

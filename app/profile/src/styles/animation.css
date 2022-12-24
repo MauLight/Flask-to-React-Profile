@@ -1,0 +1,27 @@
+.nav-item {
+    box-sizing: content-box;
+    display: inline-block;
+    position: relative;
+
+}
+
+.nav-item:after {
+    box-sizing: content-box;
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #333333;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-item:hover:after {
+
+    box-sizing: content-box;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
