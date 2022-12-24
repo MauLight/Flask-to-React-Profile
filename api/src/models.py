@@ -8,6 +8,10 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     biography = db.Column(db.String(500), unique=False, nullable=True)
+    username = db.Column(db.String(120), unique=False, nullable=False)
+    firstname = db.Column(db.String(120), unique=False, nullable=True)
+    lastname = db.Column(db.String(120), unique=False, nullable=True)
+    image = db.Column(db.String(500), unique=False, nullable=True)
     myscripts = db.relationship(
         'Scripts', cascade='all, delete', backref='user')
 

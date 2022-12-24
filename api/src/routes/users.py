@@ -18,12 +18,32 @@ def create_token():
 
 @bpUsers.route('/user', methods=['POST'])
 def post_new_user():
+    username = request.json.get('username')
     email = request.json.get('email')
     password = request.json.get('password')
 
     user = User()
+    user.username = username
     user.email = email
     user.password = password
+    user.save()
+    return jsonify(user.serialize()), 200
+
+
+@bpUsers.route('/user/<int:id>/update', methods = ['PUT'])
+def update_user(id):
+    
+    firstname = request.json.get('firstname') # type: ignore
+    lastname = request.json.get('lastname') # type: ignore
+    biography = request.json.get('biography') # type: ignore
+    image = request.json.get('image')  # type: ignore
+
+    user = User.query.get(id)
+    user.firstname = firstname
+    user.lastname = lastname
+    user.biography = biography
+    user.image = image
+
     user.save()
     return jsonify(user.serialize()), 200
 
