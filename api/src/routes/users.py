@@ -43,4 +43,4 @@ def get_user():
 @jwt_required()
 def get_user_by_id(id):
     user = User.query.get(id)
-    return jsonify(user.serialize()), 200
+    return jsonify(user.serialize_with_scripts()), 200
