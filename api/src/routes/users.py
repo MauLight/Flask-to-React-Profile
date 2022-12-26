@@ -88,11 +88,11 @@ def get_user():
 @bpUsers.route('/users', methods=['GET'])  # type: ignore
 def all_users():
     users = User.query.all()
-    users = list(map(lambda user: user.serialize(), users))
+    users = list(map(lambda user: user.serialize_with_scripts(), users))
     return jsonify(users), 200
 
 
-@bpUsers.route('/user<int:id>', methods=['GET'])
+@bpUsers.route('/user/<int:id>', methods=['GET'])
 @jwt_required()
 def get_user_by_id(id):
     user = User.query.get(id)

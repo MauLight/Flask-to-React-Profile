@@ -32,7 +32,23 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "biography": self.biography,
+            "username": self.username,
+            "firstname": self.firstname,
+            "lastname": self.lastname,
+            'userpicture': [pic.serialize() for pic in self.userpicture],
             'myscripts': [script.serialize() for script in self.myscripts]
+        }
+
+    def serialize_with_profile_image(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "biography": self.biography,
+            "username": self.username,
+            "firstname": self.firstname,
+            "lastname": self.lastname,
+            'userpicture': [pic.serialize() for pic in self.userpicture]
         }
 
     def save(self):
@@ -68,6 +84,18 @@ class Scripts(db.Model):
             'logline': self.logline,
             'cover': self.cover,
             'url': self.url,
+            'user_id': self.user_id,
+        }
+
+    def serialize_with_covers(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            'year': self.year,
+            'logline': self.logline,
+            'cover': self.cover,
+            'url': self.url,
+            'scriptcover': [cover.serialize() for cover in self.scriptcover],
             'user_id': self.user_id,
         }
 
