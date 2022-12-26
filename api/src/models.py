@@ -55,6 +55,8 @@ class Scripts(db.Model):
     logline = db.Column(db.String(500), unique=False, nullable=False)
     cover = db.Column(db.String(250), unique=False, nullable=False)
     url = db.Column(db.String(250), unique=False, nullable=False)
+    scriptcover = db.relationship(
+        'Scriptcover', cascade='all, delete', backref='scripts')
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.id', ondelete='CASCADE'), nullable=False)
 
@@ -87,6 +89,32 @@ class Userpicture(db.Model):
     filename = db.Column(db.String(200), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.id', ondelete='CASCADE'), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "filename": self.filename,
+        }
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session
+
+
+class Scriptcover(db.Model):
+    __tablename__ = 'scriptcover'
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(200), nullable=False)
+    script_id = db.Column(db.Integer, db.ForeignKey(
+        'scripts.id', ondelete='CASCADE'), nullable=False)
 
     def serialize(self):
         return {
