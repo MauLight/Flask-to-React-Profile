@@ -7,6 +7,7 @@ from models import db
 import os
 from routes.main import bpMain
 from routes.users import bpUsers
+import cloudinary
 
 load_dotenv()
 
@@ -24,6 +25,13 @@ jwt = JWTManager(app)
 db.init_app(app)
 Migrate(app, db)
 CORS(app)
+
+cloudinary.config(
+    cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME'),
+    api_key = os.getenv('CLOUDINARY_API_KEY'),
+    api_secret = os.getenv('CLOUDINARY_API_SECRET'),
+    secure = True
+)
 
 app.register_blueprint(bpMain)
 app.register_blueprint(bpUsers, url_prefix='/api')

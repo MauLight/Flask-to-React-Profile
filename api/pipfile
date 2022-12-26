@@ -12,6 +12,7 @@ pymysql = "*"
 python-dotenv = "*"
 flask-jwt-extended = "*"
 cryptography = "*"
+cloudinary = "*"
 
 [dev-packages]
 

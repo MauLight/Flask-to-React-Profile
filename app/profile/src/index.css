@@ -120,3 +120,12 @@ p {
   background-color: #333333 !important;
   color: white !important;
 }
+
+.bio {
+  width: 172px !important;
+}
+
+.card-user {
+  width: 100px;
+  height: auto;
+}

@@ -7,6 +7,7 @@ import image from "../img/logo.26_nov.png";
 const Login = () => {
 
     const { store, actions } = useContext(Context);
+    const [users, setUsers] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const token = sessionStorage.getItem("token");
@@ -32,13 +33,39 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         actions.login(email, password);
-      };
-    
-useEffect(() => {
-    if (store.token && store.token !== "" && store.token !== undefined)
-    navigate("/");
-})
+    };
 
+    useEffect(() => {
+        if (store.token && store.token !== "" && store.token !== undefined) {
+
+            //actions.getCredentials()
+            //console.log(store.crendentials)
+            //actions.getUserId();
+            navigate("/");
+        }
+    })
+
+    /*
+    const getUsers = async () => {
+        let url = 'http://127.0.0.1:5000/api/users';
+        let options_get  = {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }
+        try {
+            const response = await fetch(url, options_get);
+            const data = await response.json();
+            console.log(data);
+            setUsers(data);
+            const userIdarr = data.filter(elem => elem.email === ) 
+        }
+        catch(error) {
+            console.log(error);
+        }
+    };
+    */
     return (
 
         <div className='page container-fluid justify-content-center d-flex'>

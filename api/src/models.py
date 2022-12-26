@@ -4,6 +4,7 @@ db = SQLAlchemy()
 
 
 class User(db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
@@ -14,6 +15,8 @@ class User(db.Model):
     image = db.Column(db.String(500), unique=False, nullable=True)
     myscripts = db.relationship(
         'Scripts', cascade='all, delete', backref='user')
+    userpicture = db.relationship(
+        'Userpicture', cascade='all, delete', backref='user')
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -45,6 +48,7 @@ class User(db.Model):
 
 
 class Scripts(db.Model):
+    __tablename__ = 'scripts'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), unique=False, nullable=False)
     year = db.Column(db.String(50), unique=False, nullable=False)
@@ -75,3 +79,29 @@ class Scripts(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+
+class Userpicture(db.Model):
+    __tablename__ = 'userpicture'
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(200), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'user.id', ondelete='CASCADE'), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "filename": self.filename,
+        }
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session
