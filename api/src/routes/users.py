@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, send_file
 from models import User
 from models import Scripts
 from models import Userpicture
+from models import Scriptcover
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -88,6 +89,7 @@ def get_user():
 @bpUsers.route('/users', methods=['GET'])  # type: ignore
 def all_users():
     users = User.query.all()
+    # rememeber to change to "serialize before deployment".
     users = list(map(lambda user: user.serialize_with_scripts(), users))
     return jsonify(users), 200
 
@@ -145,4 +147,52 @@ def getuserpictures(user_id):
         user_picture_image.filename = resp['secure_url']
         user_picture_image.update()
         data.append(user_picture_image.serialize())
+        return jsonify(data), 200
+
+
+@bpUsers.route('/cover', methods=['POST'])
+def scriptcover():
+
+    script_id = request.form['script_id']
+    image = request.files["image"]
+    resp = cloudinary.uploader.upload(image, folder="picture")
+    if not resp:
+        return jsonify({"msg": "error uploading image"}), 400
+    scriptcover = Scriptcover()
+    scriptcover.filename = resp['secure_url']
+    scriptcover.script_id = script_id
+    scriptcover.save()
+    return jsonify(scriptcover.serialize()), 200
+
+
+@bpUsers.route('/cover/<int:script_id>', methods=['GET', 'PUT'])
+def get_or_update_scriptcover(script_id):
+
+    if request.method == 'GET':
+
+        if script_id is not None:
+            scriptcover = Scriptcover.query.filter_by(
+                script_id=script_id).first()
+            print(scriptcover)
+            if not scriptcover:
+                return jsonify({"msg": "Script has no cover!"}), 400
+            return jsonify(scriptcover.serialize()), 200
+        else:
+            return jsonify({"msg": "script_id doesn't exist!"}), 400
+
+    if request.method == 'PUT':
+
+        image = request.files.getlist("image")
+
+        print(image)
+        data = []
+        resp = cloudinary.uploader.upload(image, folder="picture")
+
+        if not resp:
+            return jsonify({"msg": "error uploading image"}), 400
+
+        scriptcover = Scriptcover.query.filter_by(script_id=script_id)
+        scriptcover.filename = resp['secure_url']
+        scriptcover.update()
+        data.append(scriptcover.serialize())
         return jsonify(data), 200

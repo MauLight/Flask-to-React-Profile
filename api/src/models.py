@@ -147,7 +147,7 @@ class Scriptcover(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
+            "script_id": self.script_id,
             "filename": self.filename,
         }
 
