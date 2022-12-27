@@ -57,6 +57,7 @@ def update_user(id):
 def post_new_script():
     title = request.json.get('title')
     year = request.json.get('year')
+    genre = request.json.get('genre')
     logline = request.json.get('logline')
     cover = request.json.get('cover')
     url = request.json.get('url')
@@ -65,6 +66,7 @@ def post_new_script():
     script = Scripts()
     script.title = title
     script.year = year
+    script.genre = genre
     script.logline = logline
     script.cover = cover
     script.url = url
@@ -196,3 +198,10 @@ def get_or_update_scriptcover(script_id):
         scriptcover.update()
         data.append(scriptcover.serialize())
         return jsonify(data), 200
+
+
+@bpUsers.route('/user/<int:id>/delete', methods=['DELETE'])
+def delete_user(id):
+    user = User.query.get(id)   
+    user.delete()
+    return jsonify({ "message": "User Deleted!"}), 200

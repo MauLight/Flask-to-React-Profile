@@ -4,6 +4,7 @@ import { Context } from "../context/appContext";
 import { arr } from '../array';
 import portrait from '../img/portrait.png';
 import dummycover from '../img/3.jpg';
+import Footer from '../views/footer';
 
 const Editor = () => {
 
@@ -19,6 +20,7 @@ const Editor = () => {
     const [biography, setBiography] = useState('');
     const [title, setTitle] = useState('');
     const [year, setYear] = useState('');
+    const [genre, setGenre] = useState('');
     const [logline, setLogline] = useState('');
     const [cover, setCover] = useState('');
     const [scriptcover, setScriptCover] = useState('');
@@ -27,6 +29,8 @@ const Editor = () => {
     const [photoUser, setPhotoUser] = useState(null);
     const [currentcover, setCurrentCover] = useState(null);
     const [error, setError] = useState(null);
+
+    console.log(genre);
 
     const handleUser_Id = () => {
         console.log(store.credentials);
@@ -115,6 +119,7 @@ const Editor = () => {
             body: JSON.stringify({
                 title: title,
                 year: year,
+                genre: genre,
                 logline: logline,
                 cover: cover,
                 url: url,
@@ -294,6 +299,24 @@ const Editor = () => {
         }
     };
 
+    const handleDelete = async () => {
+        let url = `http://127.0.0.1:5000/api/user/${user_id}/delete`;
+        let options_delete = {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }
+        try {
+            const response = await fetch(url, options_delete);
+            const data = await response.json();
+            console.log(data);
+            navigate('/login');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="d-grid">
             <div className="underline2 pb-5">
@@ -404,6 +427,24 @@ const Editor = () => {
                             </span>
                         </div>
                     </div>
+
+                    <div className="input-group mb-3">
+                        <label htmlFor="genre" className="col-form-label">Genre</label>
+                        <select className="genre mx-3 form-select form-select-sm" id="inputGroupSelect01" onChange={(e) => setGenre(e.target.value)}>
+                            <option selected>Choose...</option>
+                            <option value="Action">Action</option>
+                            <option value="Biopic">Biopic</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Musical">Musical</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Sci-fi">Sci-fi</option>
+                            <option value="Suspense">Suspense</option>
+                            <option value="Thriller">Thriller</option>
+                        </select>
+                    </div>
+
                     <div className="row g-3 align-items-center">
                         <div className="col-auto">
                             <label htmlFor="logline" className="col-form-label">Logline</label>
@@ -473,7 +514,22 @@ const Editor = () => {
                     <button type="submit" className="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleScripts}>Submit</button>
                 </div>
             </form>
-
+            <div className="container-fluid d-grid mx-auto justify-content-center mb-5">
+                <div className="row g-3 align-items-center">
+                    <div className="col-auto">
+                        <label htmlFor="url" className="col-form-label">Delete User</label>
+                    </div>
+                    <div className="col-auto">
+                        <button type="submit" className="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleDelete}>Delete</button>
+                    </div>
+                    <div className="col-auto">
+                        <span id="passwordHelpInline" className="form-text">
+                            This action cannot be undone.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <Footer />
         </div>
     )
 }

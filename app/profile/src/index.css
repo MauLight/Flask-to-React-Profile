@@ -75,8 +75,8 @@ form {
 
   box-shadow: 18px 18px 30px #bcbcbc,
     -18px -18px 30px #ffffff;
-    background-image: linear-gradient(to right top, #333333, #333333, #333333, #333333, #333333);
-    color: #ffffff;
+  background-image: linear-gradient(to right top, #333333, #333333, #333333, #333333, #333333);
+  color: #ffffff;
 }
 
 .trip_text {
@@ -86,11 +86,12 @@ form {
 .underline {
   border-bottom: 1px solid #000;
   padding-left: 100px !important;
-  padding-right:100px !important;
+  padding-right: 100px !important;
 }
+
 .underline2 {
   padding-left: 100px !important;
-  padding-right:100px !important;
+  padding-right: 100px !important;
 }
 
 .navbar {
@@ -107,12 +108,14 @@ p {
 }
 
 .cover {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
 
 .cover:hover {
-  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(0%);
+  /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
 }
 
@@ -128,4 +131,10 @@ p {
 .card-user {
   width: 100px;
   height: auto;
+}
+
+.genre {
+  width: 170px !important;
+  position: absolute !important;
+  left: 6%;
 }
