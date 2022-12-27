@@ -68,6 +68,7 @@ class Scripts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), unique=False, nullable=False)
     year = db.Column(db.String(50), unique=False, nullable=False)
+    length = db.Column(db.String(250), unique=False, nullable=False)
     genre = db.Column(db.String(250), unique=False, nullable=False)
     logline = db.Column(db.String(500), unique=False, nullable=False)
     cover = db.Column(db.String(250), unique=False, nullable=False)
@@ -82,6 +83,7 @@ class Scripts(db.Model):
             "id": self.id,
             "title": self.title,
             'year': self.year,
+            'length': self.length,
             'genre': self.genre,
             'logline': self.logline,
             'cover': self.cover,
@@ -94,6 +96,7 @@ class Scripts(db.Model):
             "id": self.id,
             "title": self.title,
             'year': self.year,
+            'length': self.length,
             'genre': self.genre,
             'logline': self.logline,
             'cover': self.cover,

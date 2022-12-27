@@ -7,6 +7,7 @@ from models import db
 import os
 from routes.main import bpMain
 from routes.users import bpUsers
+from routes.scripts import bpScripts
 import cloudinary
 
 load_dotenv()
@@ -35,6 +36,7 @@ cloudinary.config(
 
 app.register_blueprint(bpMain)
 app.register_blueprint(bpUsers, url_prefix='/api')
+app.register_blueprint(bpScripts, url_prefix='/api')
 
 if __name__ == '__main__':
     app.run()

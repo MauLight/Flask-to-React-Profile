@@ -20,6 +20,7 @@ const Editor = () => {
     const [biography, setBiography] = useState('');
     const [title, setTitle] = useState('');
     const [year, setYear] = useState('');
+    const [length, setLength] = useState('');
     const [genre, setGenre] = useState('');
     const [logline, setLogline] = useState('');
     const [cover, setCover] = useState('');
@@ -30,6 +31,7 @@ const Editor = () => {
     const [currentcover, setCurrentCover] = useState(null);
     const [error, setError] = useState(null);
 
+    console.log(length);
     console.log(genre);
 
     const handleUser_Id = () => {
@@ -119,6 +121,7 @@ const Editor = () => {
             body: JSON.stringify({
                 title: title,
                 year: year,
+                length: length,
                 genre: genre,
                 logline: logline,
                 cover: cover,
@@ -167,14 +170,14 @@ const Editor = () => {
     };
 
     useEffect(() => {
-        if (store.token && store.token != "" && store.token != undefined) {
+        if (store.token && store.token !== "" && store.token !== undefined) {
             actions.getCredentials();
             console.log(store.credentials);
         }
     }, [store.token]);
 
     useEffect(() => {
-        if (store.credentials && store.credentials != "" && store.credentials != undefined) {
+        if (store.credentials && store.credentials !== "" && store.credentials !== undefined) {
             handleUser_Id();
         }
     })
@@ -219,7 +222,7 @@ const Editor = () => {
                 }
             );
 
-            if (response.status == 200) getImageUser();
+            if (response.status === 200) getImageUser();
 
         } catch (error) {
             setError("Error uploading image");
@@ -275,7 +278,7 @@ const Editor = () => {
                 }
             );
 
-            if (response.status == 200) getScriptCover();
+            if (response.status === 200) getScriptCover();
 
         } catch (error) {
             setError("Error uploading image");
@@ -427,6 +430,26 @@ const Editor = () => {
                             </span>
                         </div>
                     </div>
+                    <form>
+                    <div className="input-group mb-3">
+                        <div className="col-auto">
+                            <label htmlFor="year" className="col-form-label me-3">Length</label>
+                        </div>
+                        <div class="form-check pt-2">
+                            <input class="form-check-input" type="radio" name="length" id="1" value="Short" onChange={(e) => setLength(e.target.value)} />
+                            <label class="form-check-label" for="exampleRadios1">
+                                Short script
+                            </label>
+                        </div>
+                        <div class="form-check pt-2 mx-3">
+                            <input class="form-check-input" type="radio" name="length" id="2" value="Feature" onChange={(e) => setLength(e.target.value)} />
+                            <label class="form-check-label" for="exampleRadios2">
+                                Feature script
+                            </label>
+                        </div>
+                    </div>
+                    </form>
+
 
                     <div className="input-group mb-3">
                         <label htmlFor="genre" className="col-form-label">Genre</label>

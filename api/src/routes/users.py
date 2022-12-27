@@ -57,6 +57,7 @@ def update_user(id):
 def post_new_script():
     title = request.json.get('title')
     year = request.json.get('year')
+    length = request.json.get('length')
     genre = request.json.get('genre')
     logline = request.json.get('logline')
     cover = request.json.get('cover')
@@ -66,6 +67,7 @@ def post_new_script():
     script = Scripts()
     script.title = title
     script.year = year
+    script.length = length
     script.genre = genre
     script.logline = logline
     script.cover = cover
