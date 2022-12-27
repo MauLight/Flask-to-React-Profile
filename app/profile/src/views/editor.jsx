@@ -2,7 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
 import { arr } from '../array';
-import portrait from '../img/portrait.png'
+import portrait from '../img/portrait.png';
+import dummycover from '../img/3.jpg';
 
 const Editor = () => {
 
@@ -11,6 +12,7 @@ const Editor = () => {
 
 
     const [user_id, setUser_id] = useState('');
+    const [script_id, setScript_id] = useState(1);
     const [image, setImage] = useState('');
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -19,9 +21,11 @@ const Editor = () => {
     const [year, setYear] = useState('');
     const [logline, setLogline] = useState('');
     const [cover, setCover] = useState('');
+    const [scriptcover, setScriptCover] = useState('');
     const [url, setUrl] = useState('');
     const [imageUser, setImageUser] = useState(null);
     const [photoUser, setPhotoUser] = useState(null);
+    const [currentcover, setCurrentCover] = useState(null);
     const [error, setError] = useState(null);
 
     const handleUser_Id = () => {
@@ -234,15 +238,71 @@ const Editor = () => {
         }
     };
 
+    const handleSubmitCover = (e) => {
+        e.preventDefault();
+
+        if (scriptcover !== null) {
+            console.log("handlesubmitCover");
+            const formData = new FormData();
+            console.log(script_id);
+            console.log(scriptcover[0]);
+            formData.append("script_id", script_id);
+            formData.append("image", scriptcover[0]);
+            console.log(formData);
+            uploadCover(formData);
+            setError(null);
+            e.target.reset();
+        } else {
+            setError("Please, complete the form");
+        }
+    };
+
+    const uploadCover = async (formData) => {
+        console.log("upload cover");
+        try {
+            const response = await fetch(
+                `http://127.0.0.1:5000/api/cover`,
+                {
+                    method: "POST",
+                    body: formData,
+                    mode: "cors",
+                    cache: "no-cache",
+                }
+            );
+
+            if (response.status == 200) getScriptCover();
+
+        } catch (error) {
+            setError("Error uploading image");
+            console.log(error.message);
+        }
+    };
+
+    const getScriptCover = async () => {
+        try {
+            const response = await fetch(
+                `http://127.0.0.1:5000/api/cover/${script_id}`
+            );
+            const data = await response.json();
+
+            if (data?.msg !== 'Script has no cover!') {
+                setCurrentCover(data);
+            }
+
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     return (
-        <>
+        <div className="d-grid">
             <div className="underline2 pb-5">
                 <div className="underline col-12 text-center">
                     <h2 className="title pb-3">PROFILE EDITOR</h2>
                 </div>
             </div>
             <form className="mx-auto my-5" onSubmit={handleUpdateUser}>
-                <h4 className="mx-5">Edit profile</h4>
+                <h4 className="mx-5 mb-5">Edit profile</h4>
                 <div className="d-block px-5">
 
                     <div className="row g-3  mx-3">
@@ -264,7 +324,7 @@ const Editor = () => {
                                         name="imageUser"
                                         onChange={(e) => setImageUser(e.target.files)}
                                     />
-                                    <button class="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleSubmit}>Upload</button>
+                                    <button className="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleSubmit}>Upload</button>
                                 </div>
                             </form>
                             <div className="user-pic">
@@ -316,8 +376,8 @@ const Editor = () => {
                 </div>
             </form>
             <form className="mx-auto my-5" onSubmit={handleScripts}>
-                <h4 className="mx-5">Submit scripts</h4>
-                <div className="d-flex justify-content-center px-5">
+                <h4 className="mx-5 mb-5">Submit scripts</h4>
+                <div className="d-block px-5">
                     <div className="row g-3 align-items-center">
                         <div className="col-auto">
                             <label htmlFor="title" className="col-form-label">Title</label>
@@ -357,19 +417,44 @@ const Editor = () => {
                             </span>
                         </div>
                     </div>
-                    <div className="row g-3 align-items-center">
+
+                    <div className="row g-3 my-2 mx-3">
                         <div className="col-auto">
-                            <label htmlFor="cover" className="col-form-label">Cover</label>
+                            <label htmlFor="firstname" className="col-form-label">Script cover</label>
                         </div>
-                        <div className="col-auto">
-                            <input type="text" id="cover" className="form-control form-control-sm" aria-describedby="cover" value={cover} onChange={handleCover} />
-                        </div>
-                        <div className="col-auto">
-                            <span id="passwordHelpInline" className="form-text">
-                                Link to script promotional cover.
-                            </span>
+                        <div className="col d-flex input-group">
+                            {error && (
+                                <div className="alert alert-danger" role="alert">
+                                    {error}
+                                </div>
+                            )}
+                            <form onSubmit={handleSubmitCover}>
+                                <div className="d-flex">
+                                    <input
+                                        type="file"
+                                        className="form-control form-control-sm"
+                                        id="imageUser"
+                                        name="imageUser"
+                                        onChange={(e) => setScriptCover(e.target.files)}
+                                    />
+                                    <button class="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleSubmitCover}>Upload</button>
+                                </div>
+                            </form>
+                            <div className="user-pic">
+
+                                <div className="card rounded-0 m-auto">
+                                    <img
+                                        src={currentcover ? currentcover.filename : dummycover}
+                                        className="card-user img-fluid rounded-0"
+                                        key={currentcover ? currentcover.id : "a"}
+                                        alt="userpicture"
+                                    />
+                                </div>
+
+                            </div>
                         </div>
                     </div>
+
                     <div className="row g-3 align-items-center">
                         <div className="col-auto">
                             <label htmlFor="url" className="col-form-label">Url</label>
@@ -385,11 +470,11 @@ const Editor = () => {
                     </div>
                 </div>
                 <div className="col-auto d-flex mt-5">
-                    <button type="submit" class="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleScripts}>Submit</button>
+                    <button type="submit" className="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleScripts}>Submit</button>
                 </div>
             </form>
 
-        </>
+        </div>
     )
 }
 
