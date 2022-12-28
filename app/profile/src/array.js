@@ -12,60 +12,72 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
                 user_id: 1
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
                 user_id: 1
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
                 user_id: 1
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
                 user_id: 1
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
                 user_id: 1
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
                 user_id: 1
 
             }
@@ -83,61 +95,73 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                user_id: 2
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                user_id: 2
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                user_id: 2
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                user_id: 2
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                user_id: 2
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                user_id: 2
 
             }
         ]
@@ -154,61 +178,73 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                user_id: 3
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                user_id: 3
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                user_id: 3
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                user_id: 3
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                user_id: 3
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                user_id: 3
 
             }
         ]
@@ -225,61 +261,73 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                user_id: 4
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                user_id: 4
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                user_id: 4
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                user_id: 4
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                user_id: 4
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                user_id: 4
 
             }
         ]
@@ -296,61 +344,73 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                user_id: 5
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                user_id: 5
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                user_id: 5
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                user_id: 5
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                user_id: 5
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                user_id: 5
 
             }
         ]
@@ -368,61 +428,73 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                user_id: 6
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                user_id: 6
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                user_id: 6
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                user_id: 6
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                user_id: 6
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                user_id: 6
 
             }
         ]
@@ -440,61 +512,73 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                user_id: 7
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                user_id: 7
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                user_id: 7
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                user_id: 7
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                user_id: 7
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                user_id: 7
 
             }
         ]
@@ -511,61 +595,73 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                user_id: 8
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                user_id: 8
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                user_id: 8
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                user_id: 8
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                user_id: 8
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                user_id: 8
 
             }
         ]
@@ -582,62 +678,73 @@ export const arr = [
             {
                 id: 1,
                 title: "Speed of Light",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "An amateur driver beats the world record for speed and gets a chance to race for the championship and to prove the value of his life.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/12/speed-of-light-by-m.light_.pdf",
+                user_id: 9
 
             },
             {
                 id: 2,
                 title: "Hope",
+                genre: "drama",
                 year: "2022",
+                length: "feature",
                 logline: "Following her abduction, a naive activist risks everything to escape and becomes the very ideals she was imprisoned for.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/11/hope.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/11/11.-hope-by-m.-light_compressed.pdf",
+                user_id: 9
 
             },
             {
                 id: 3,
                 title: "Not a Memory",
+                genre: "action",
                 year: "2022",
+                length: "feature",
                 logline: "In a dying world, a grieving man fights against those willing to sacrifice everything to fix the past, to save his loved ones and let go of his pain.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/08/not_a_memory.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/08/10.-not-a-memory-by-m.-light.pdf",
+                user_id: 9
 
             },
             {
                 id: 4,
                 title: "SIN",
+                genre: "horror",
                 year: "2022",
+                length: "feature",
                 logline: "Mother and daughter face the oppression of the Church as they are both cursed by a demon, which becomes their only weapon of deliverance.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/06/sin.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/06/9.-sin-complete-by-mau-luz.pdf",
+                user_id: 9
 
             },
             {
                 id: 5,
                 title: "The Golden Crew",
+                genre: "comedy",
                 year: "2022",
+                length: "short",
                 logline: "A lower-class prodigy student wins a scholarship at the world's most prestigious film school and taps into the “fountain of dreams” to lead a team of rejected students into cinema history.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/05/the-golden-crew.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
-                user_id: 1
+                uuid: "https://wakeupmau.files.wordpress.com/2022/05/8.-the-golden-crew-by-mau-luz-1.pdf",
+                user_id: 9
 
             },
             {
                 id: 6,
                 title: "Son of Man",
+                genre: "drama",
                 year: "2022",
+                length: "short",
                 logline: "Preparing for a terrorist attack, a group of cult members decide which one of them will be the martyr of the mission.",
                 cover: "https://wakeupmau.files.wordpress.com/2022/02/tumblr_54f640b7bf0cf0ea81e3549e5106ee73_8fd5932a_1280.jpg",
-                url: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
-                user_id: 1
-
+                uuid: "https://wakeupmau.files.wordpress.com/2022/02/3.son-of-man-by-m.light_-2.pdf",
+                user_id: 9
             }
         ]
     },

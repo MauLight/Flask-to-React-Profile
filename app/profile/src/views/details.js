@@ -75,7 +75,7 @@ export const Details = () => {
                                                                 <div className="card-body">
                                                                     <h5 className="card-title">{script.title}</h5>
                                                                     <p className="logline card-text">{script.logline}</p>
-                                                                    <a href={script.url} className="btn">Read Script</a>
+                                                                    <a href={script.uuid} className="btn">Read Script</a>
                                                                 </div>
                                                             </div>
                                                         </div>

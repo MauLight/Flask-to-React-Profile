@@ -24,7 +24,7 @@ def create_token():
         return jsonify({"msg": "Bad username or password"}), 401
     else:
         access_token = create_access_token(identity=user.id)
-        return jsonify({ "token": access_token, "user_id": user.id })
+        return jsonify({"token": access_token, "user_id": user.id})
 
 
 @bpUsers.route('/user', methods=['POST'])
@@ -79,6 +79,30 @@ def post_new_script():
     script.cover = cover
     script.uuid = uuid
     script.user_id = user_id
+    script.save()
+    return jsonify(script.serialize()), 200
+
+
+@bpUsers.route('/scripts/<int:id>/update', methods=['PUT'])
+def update_script(id):
+
+    title = request.json.get('title')
+    year = request.json.get('year')
+    length = request.json.get('length')
+    genre = request.json.get('genre')
+    logline = request.json.get('logline')
+    cover = request.json.get('cover')
+    uuid = request.json.get('uuid')
+
+    script = Scripts.query.get(id)
+    script.title = title
+    script.year = year
+    script.length = length
+    script.genre = genre
+    script.logline = logline
+    script.cover = cover
+    script.uuid = uuid
+
     script.save()
     return jsonify(script.serialize()), 200
 

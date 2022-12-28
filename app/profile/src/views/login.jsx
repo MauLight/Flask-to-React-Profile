@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../context/appContext";
 import { useNavigate } from "react-router-dom";
 import image from "../img/logo.26_nov.png";
-import StrengthMeter from "../components/passwordsctrength";
+
 
 
 const Login = () => {

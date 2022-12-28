@@ -6,6 +6,7 @@ import { arr } from '../array';
 import portrait from '../img/portrait.png';
 import dummycover from '../img/3.jpg';
 import Footer from '../views/footer';
+import { ScriptList } from "../components/scriptlist";
 
 const Editor = () => {
 
@@ -170,13 +171,13 @@ const Editor = () => {
         }
     })
 
-    /*
+
         useEffect(() => {
             if (!store.token)
                 navigate("/login");
         })
     
-    */
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -398,7 +399,9 @@ const Editor = () => {
             </form>
             <form className="mx-auto my-5" onSubmit={handleScripts}>
                 <h4 className=" mb-5">Submit scripts</h4>
+                <ScriptList />
                 <div className="d-block px-5">
+
                     <div className="row g-3 align-items-center">
                         <div className="col-auto">
                             <label htmlFor="title" className="col-form-label">Title</label>
@@ -490,7 +493,7 @@ const Editor = () => {
 
                             <div className="upscript d-flex">
                                 <p>
-                                    <Widget publicKey='da5d9fb951c446d7a10f' id='file' key={inputkey || ''} onChange={(value) => handleUploadScript(value)} />
+                                    <Widget dataTabs="file" publicKey='da5d9fb951c446d7a10f' id='file' key={inputkey || ''} onChange={(value) => handleUploadScript(value)} />
                                 </p>
                             </div>
 

@@ -2,7 +2,12 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
+      
       user_id: null,
+      
+      scriptId: '',
+      
+      hasScripts: true,
 
       message: null,
 
@@ -69,6 +74,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         sessionStorage.removeItem("token");
         console.log("logged out!");
         setStore({ token: null });
+      },
+
+      setScriptId: (id) => {
+        setStore({ scriptId: id });
+        console.log(id);
+      },
+
+      hasScripts: () => {
+        setStore({hasScripts: false});
       },
 
       getMessage: async () => {

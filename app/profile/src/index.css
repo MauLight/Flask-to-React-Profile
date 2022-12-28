@@ -52,7 +52,8 @@ h1,
 h4,
 h5,
 .title,
-.log {
+.log,
+.newscript {
   font-family: 'Josefin Sans', sans-serif;
   color: #333333;
 }
@@ -167,4 +168,18 @@ p {
 
 .errors {
   font-size: 12px;
+}
+
+.uploadcare--menu__items {
+  display: none !important;
+}
+
+.scriptlist {
+  background-color: #e9ecef !important;
+  color: black !important;
+  font-family: system-ui !important;
+  font-size: 14px !important;
+  border: solid 1px lightgray !important;
+  padding: 5px !important;
+  border-radius: 4px !important;
 }
