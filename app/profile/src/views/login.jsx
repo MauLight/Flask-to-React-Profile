@@ -2,12 +2,14 @@ import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../context/appContext";
 import { useNavigate } from "react-router-dom";
 import image from "../img/logo.26_nov.png";
+import StrengthMeter from "../components/passwordsctrength";
 
 
 const Login = () => {
 
     const { store, actions } = useContext(Context);
     const [users, setUsers] = useState('');
+    const [isError, setError] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const token = sessionStorage.getItem("token");
@@ -19,7 +21,7 @@ const Login = () => {
     }
 
     const handleEmail = (e) => {
-        //e.preventDefault()
+        e.preventDefault()
         setEmail(e.target.value);
         console.log(e.target.value);
     }
@@ -28,6 +30,36 @@ const Login = () => {
         //e.preventDefault()
         setPassword(e.target.value);
         console.log(e.target.value);
+        let password = e.target.value;
+        let caps, small, num, specialSymbol;
+        if (password.length < 8) {
+            setError(
+                "Password should contain minimum 8 characters."
+            );
+            return;
+        } else {
+            caps = (password.match(/[A-Z]/g) || []).length;
+            small = (password.match(/[a-z]/g) || []).length;
+            num = (password.match(/[0-9]/g) || []).length;
+            specialSymbol = (password.match(/\W/g) || []).length;
+            if (caps < 1) {
+                setError("Must add one UPPERCASE letter");
+                return;
+            } else if (small < 1) {
+                setError("Must add one lowercase letter");
+                return;
+            } else if (num < 1) {
+                setError("Must add one number");
+                return;
+            } else if (specialSymbol < 1) {
+                setError("Must add one special symbol");
+                return;
+            }
+            else {
+                setError("");
+                return;
+            }
+        }
     }
 
     const handleLogin = (e) => {
@@ -41,31 +73,10 @@ const Login = () => {
             //actions.getCredentials()
             //console.log(store.crendentials)
             //actions.getUserId();
-            navigate("/");
+            navigate("/editor");
         }
     })
 
-    /*
-    const getUsers = async () => {
-        let url = 'http://127.0.0.1:5000/api/users';
-        let options_get  = {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json'
-            }
-        }
-        try {
-            const response = await fetch(url, options_get);
-            const data = await response.json();
-            console.log(data);
-            setUsers(data);
-            const userIdarr = data.filter(elem => elem.email === ) 
-        }
-        catch(error) {
-            console.log(error);
-        }
-    };
-    */
     return (
 
         <div className='page container-fluid justify-content-center d-flex'>
@@ -80,7 +91,9 @@ const Login = () => {
                         <input type="email" className="form-control form-control-sm" id="inputEmail1" aria-describedby="emailHelp" value={email} onChange={handleEmail} placeholder='Email' required />
                     </div>
                     <div className="my-3">
+                        {isError !== null && <p className="errors">{isError}</p>}
                         <input type="password" className="form-control form-control-sm" id="inputPassword1" value={password} onChange={handlePassword} placeholder='Password' required />
+
                     </div>
                     <div className='mb-3'>
                         <button type="submit" className="btn btn-primary w-100 mb-3" onClick={handleLogin}>Submit</button>

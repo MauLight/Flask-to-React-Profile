@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
+      user_id: null,
 
       message: null,
 
@@ -48,14 +49,16 @@ const getState = ({ getStore, getActions, setStore }) => {
             opts
           );
           if (resp.status !== 200) {
-            alert("There was an error");
+            alert("Incorrect email or password");
             return false;
           }
 
           const data = await resp.json();
-          console.log("access_token: " + data.access_token);
-          sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token });
+          console.log(data);
+          console.log(data.user_id);
+          console.log("access_token: " + data.token);
+          sessionStorage.setItem("token", data.token);
+          setStore({ token: data.token, user_id: data.user_id });
           return true;
         } catch (error) {
           console.error("There was an error in your request");

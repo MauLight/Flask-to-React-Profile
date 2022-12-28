@@ -11,8 +11,11 @@ const Register = () => {
     const [alert, setAlert] = useState(true);
     const navigate = useNavigate();
 
-    if (post && post === true)
-    navigate("/login");
+    if (post && post === true) {
+        console.log(post);
+        navigate("/login");
+    }
+
 
     const style = {
         width: '200px'
@@ -44,24 +47,25 @@ const Register = () => {
     }
 
     const handleRegister = (e) => {
-        //e.preventDefault();
+        e.preventDefault();
         console.log("Hey!");
         if (user && new RegExp(/\S+@\S+\.\S+/).test(email) && new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})")) {
             console.log("Correct email format");
-            postNewUser(email, password);
-          }
+            postNewUser(user, email, password);
+        }
         else {
             setAlert(false);
         }
     };
 
-    const postNewUser = async (email, password) => {
+    const postNewUser = async (user, email, password) => {
         const opts = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                username: user,
                 email: email,
                 password: password,
             }),
@@ -71,17 +75,8 @@ const Register = () => {
             const resp = await fetch(
                 "http://127.0.0.1:5000/api/user",
                 opts
-            );
-            if (resp.status !== 200) {
-                alert("There was an error");
-                return false;
-            }
-            const data = await resp.json();
-            console.log(data);
-            console.log("data posted!");
-            if (resp.status === 200) {
-                setPost(true)
-            }
+            )
+            if(resp) setPost(true);
         } catch (error) {
             console.error("There was an error in your request");
         }

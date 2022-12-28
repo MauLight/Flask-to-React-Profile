@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
+import { Widget } from "@uploadcare/react-widget";
 import { arr } from '../array';
 import portrait from '../img/portrait.png';
 import dummycover from '../img/3.jpg';
@@ -13,7 +14,7 @@ const Editor = () => {
 
 
     const [user_id, setUser_id] = useState('');
-    const [script_id, setScript_id] = useState(1);
+    const [script_id, setScript_id] = useState(2);
     const [image, setImage] = useState('');
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -25,33 +26,27 @@ const Editor = () => {
     const [logline, setLogline] = useState('');
     const [cover, setCover] = useState('');
     const [scriptcover, setScriptCover] = useState('');
-    const [url, setUrl] = useState('');
+    const [inputkey, setInputKey] = useState('');
     const [imageUser, setImageUser] = useState(null);
     const [photoUser, setPhotoUser] = useState(null);
     const [currentcover, setCurrentCover] = useState(null);
-    const [currentscript, setCurrentScript] = useState(null);
-    const [scripturl, setScriptUrl] = useState('');
+    const [uuid, setUuid] = useState('');
     const [error, setError] = useState(null);
     const [error2, setError2] = useState(null);
     const [error3, setError3] = useState(null);
 
-    console.log(length);
+    console.log(currentcover);
     console.log(genre);
 
+    const resetTarget = () => {
+        let randomString = Math.random().toString(36);
+
+        setInputKey(randomString);
+    };
 
     const handleUser_Id = () => {
-        console.log(store.credentials);
-        const currentUser = arr.filter(elem => elem.email === store.credentials);
-        console.log(currentUser);
-        const id = currentUser[0].id;
-        console.log(id);
-        setUser_id(id);
-    }
-
-    const handleImage = (e) => {
-        e.preventDefault();
-        console.log(e.target.value);
-        setImage(e.target.value);
+        setUser_id(store.user_id);
+        console.log(user_id);
     }
 
     const handleFirstname = (e) => {
@@ -90,18 +85,6 @@ const Editor = () => {
         setLogline(e.target.value);
     }
 
-    const handleCover = (e) => {
-        e.preventDefault();
-        console.log(e.target.value);
-        setCover(e.target.value);
-    }
-
-    const handleUrl = (e) => {
-        e.preventDefault();
-        console.log(e.target.value);
-        setUrl(e.target.value);
-    }
-
     const handleScripts = (e) => {
         e.preventDefault();
         console.log('ready to submit!');
@@ -130,7 +113,7 @@ const Editor = () => {
                 genre: genre,
                 logline: logline,
                 cover: cover,
-                url: url,
+                uuid: uuid,
                 user_id: user_id
             })
         }
@@ -208,7 +191,7 @@ const Editor = () => {
             console.log(formData);
             uploadImage(formData);
             setError3(null);
-            e.target.reset();
+            e.target.value = null;
         } else {
             setError3("Please, complete the form");
         }
@@ -264,7 +247,7 @@ const Editor = () => {
             console.log(formData);
             uploadCover(formData);
             setError(null);
-            e.target.reset();
+            resetTarget();
         } else {
             setError("Please, complete the form");
         }
@@ -300,48 +283,11 @@ const Editor = () => {
 
             if (data?.msg !== 'Script has no cover!') {
                 setCurrentCover(data);
+                setCover(data.filename);
+                console.log(data.filename);
             }
 
         } catch (error) {
-            console.log(error.message);
-        }
-    };
-
-    const handleUploadScript = (e) => {
-        e.preventDefault();
-        console.log(currentscript)
-        if (currentscript !== null) {
-            const formData = new FormData();
-            console.log(script_id);
-            console.log(currentscript[0]);
-            formData.append("file", currentscript[0]);
-            formData.append("script_id", script_id);
-            uploadScript(formData);
-            setError2(null);
-            e.target.reset();
-        } else {
-            setError2("Please, complete the form");
-        }
-    };
-
-    const uploadScript = async (formData) => {
-        console.log("upload script");
-        try {
-            const response = await fetch(
-                `http://127.0.0.1:5000/api/uploadscript`,
-                {
-                    method: "POST",
-                    body: formData,
-                    mode: "cors",
-                    cache: "no-cache",
-                }
-            );
-            const data = await response.json();
-            if (response.status === 200) setScriptUrl(data);
-            console.log(scripturl);
-
-        } catch (error) {
-            setError("Error uploading image");
             console.log(error.message);
         }
     };
@@ -362,6 +308,11 @@ const Editor = () => {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const handleUploadScript = (value) => {
+        setUuid(value.uuid);
+        resetTarget();
     }
 
     return (
@@ -386,7 +337,7 @@ const Editor = () => {
                                 </div>
                             )}
 
-                            <div className="d-flex">
+                            <div className="upcover2 d-flex">
                                 <input
                                     type="file"
                                     className="form-control form-control-sm"
@@ -538,14 +489,9 @@ const Editor = () => {
                             )}
 
                             <div className="upscript d-flex">
-                                <input
-                                    type="file"
-                                    className="form-control form-control-sm"
-                                    id="imageUser"
-                                    name="imageUser"
-                                    onChange={(e) => setCurrentScript(e.target.files)}
-                                />
-                                <button className="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleUploadScript}>Upload</button>
+                                <p>
+                                    <Widget publicKey='da5d9fb951c446d7a10f' id='file' key={inputkey || ''} onChange={(value) => handleUploadScript(value)} />
+                                </p>
                             </div>
 
                         </div>
@@ -564,6 +510,7 @@ const Editor = () => {
 
                             <div className="upcover d-flex">
                                 <input
+                                    key={inputkey || ''}
                                     type="file"
                                     className="form-control form-control-sm"
                                     id="imageUser"

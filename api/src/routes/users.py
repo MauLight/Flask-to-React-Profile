@@ -4,7 +4,6 @@ from models import User
 from models import Scripts
 from models import Userpicture
 from models import Scriptcover
-from models import Uploadscript
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -18,8 +17,14 @@ bpUsers = Blueprint('bpUsers', __name__)
 def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+
+    user = User.query.filter_by(email=email, password=password).first()
+    if user is None:
+        # the user was not found on the database
+        return jsonify({"msg": "Bad username or password"}), 401
+    else:
+        access_token = create_access_token(identity=user.id)
+        return jsonify({ "token": access_token, "user_id": user.id })
 
 
 @bpUsers.route('/user', methods=['POST'])
@@ -62,7 +67,7 @@ def post_new_script():
     genre = request.json.get('genre')
     logline = request.json.get('logline')
     cover = request.json.get('cover')
-    url = request.json.get('url')
+    uuid = request.json.get('uuid')
     user_id = request.json.get('user_id')
 
     script = Scripts()
@@ -72,7 +77,7 @@ def post_new_script():
     script.genre = genre
     script.logline = logline
     script.cover = cover
-    script.url = url
+    script.uuid = uuid
     script.user_id = user_id
     script.save()
     return jsonify(script.serialize()), 200
@@ -82,10 +87,10 @@ def post_new_script():
 @jwt_required()
 def get_user():
 
-    email = get_jwt_identity()
+    id = get_jwt_identity()
 
     credentials = {
-        "user": email
+        "user": id
     }
 
     return jsonify(credentials)
@@ -208,14 +213,3 @@ def delete_user(id):
     user = User.query.get(id)
     user.delete()
     return jsonify({"message": "User Deleted!"}), 200
-
-
-@bpUsers.route('/uploadscript', methods=['GET', 'POST'])
-def upload_script():
-    if request.method == 'POST':
-        file = request.files['file']
-        script_id = request.form['script_id']
-
-        upload = Uploadscript(script_id=script_id, filename=file.filename, data=file.read())
-        upload.save()
-    return jsonify({'uploaded': file.filename, 'script_id': script_id})
