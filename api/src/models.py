@@ -167,3 +167,30 @@ class Scriptcover(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session
+
+
+class Uploadscript(db.Model):
+    __tablename__ = 'uploadscript'
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(200), nullable=False)
+    data = db.Column(db.LargeBinary(length=(2**32)-1))
+    script_id = db.Column(db.Integer, db.ForeignKey(
+        'scripts.id', ondelete='CASCADE'), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "script_id": self.script_id,
+            "filename": self.filename,
+        }
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session

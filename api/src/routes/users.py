@@ -4,6 +4,7 @@ from models import User
 from models import Scripts
 from models import Userpicture
 from models import Scriptcover
+from models import Uploadscript
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -204,6 +205,17 @@ def get_or_update_scriptcover(script_id):
 
 @bpUsers.route('/user/<int:id>/delete', methods=['DELETE'])
 def delete_user(id):
-    user = User.query.get(id)   
+    user = User.query.get(id)
     user.delete()
-    return jsonify({ "message": "User Deleted!"}), 200
+    return jsonify({"message": "User Deleted!"}), 200
+
+
+@bpUsers.route('/uploadscript', methods=['GET', 'POST'])
+def upload_script():
+    if request.method == 'POST':
+        file = request.files['file']
+        script_id = request.form['script_id']
+
+        upload = Uploadscript(script_id=script_id, filename=file.filename, data=file.read())
+        upload.save()
+    return jsonify({'uploaded': file.filename, 'script_id': script_id})

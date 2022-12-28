@@ -13,6 +13,7 @@ import cloudinary
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]iasdfffsd/'
 app.url_map.strict_slashes = False
 app.config['DEBUG'] = True
 app.config['ENV'] = 'development'

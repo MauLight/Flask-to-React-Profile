@@ -29,10 +29,15 @@ const Editor = () => {
     const [imageUser, setImageUser] = useState(null);
     const [photoUser, setPhotoUser] = useState(null);
     const [currentcover, setCurrentCover] = useState(null);
+    const [currentscript, setCurrentScript] = useState(null);
+    const [scripturl, setScriptUrl] = useState('');
     const [error, setError] = useState(null);
+    const [error2, setError2] = useState(null);
+    const [error3, setError3] = useState(null);
 
     console.log(length);
     console.log(genre);
+
 
     const handleUser_Id = () => {
         console.log(store.credentials);
@@ -202,10 +207,10 @@ const Editor = () => {
             formData.append("image", imageUser[0]);
             console.log(formData);
             uploadImage(formData);
-            setError(null);
+            setError3(null);
             e.target.reset();
         } else {
-            setError("Please, complete the form");
+            setError3("Please, complete the form");
         }
     };
 
@@ -302,6 +307,45 @@ const Editor = () => {
         }
     };
 
+    const handleUploadScript = (e) => {
+        e.preventDefault();
+        console.log(currentscript)
+        if (currentscript !== null) {
+            const formData = new FormData();
+            console.log(script_id);
+            console.log(currentscript[0]);
+            formData.append("file", currentscript[0]);
+            formData.append("script_id", script_id);
+            uploadScript(formData);
+            setError2(null);
+            e.target.reset();
+        } else {
+            setError2("Please, complete the form");
+        }
+    };
+
+    const uploadScript = async (formData) => {
+        console.log("upload script");
+        try {
+            const response = await fetch(
+                `http://127.0.0.1:5000/api/uploadscript`,
+                {
+                    method: "POST",
+                    body: formData,
+                    mode: "cors",
+                    cache: "no-cache",
+                }
+            );
+            const data = await response.json();
+            if (response.status === 200) setScriptUrl(data);
+            console.log(scripturl);
+
+        } catch (error) {
+            setError("Error uploading image");
+            console.log(error.message);
+        }
+    };
+
     const handleDelete = async () => {
         let url = `http://127.0.0.1:5000/api/user/${user_id}/delete`;
         let options_delete = {
@@ -328,31 +372,31 @@ const Editor = () => {
                 </div>
             </div>
             <form className="mx-auto my-5" onSubmit={handleUpdateUser}>
-                <h4 className="mx-5 mb-5">Edit profile</h4>
+                <h4 className="mb-5">Edit profile</h4>
                 <div className="d-block px-5">
 
                     <div className="row g-3  mx-3">
                         <div className="col-auto">
-                            <label htmlFor="firstname" className="col-form-label">Profile Image</label>
+                            <label htmlFor="imageUser" className="col-form-label">Profile Image</label>
                         </div>
                         <div className="col d-flex input-group">
-                            {error && (
+                            {error3 && (
                                 <div className="alert alert-danger" role="alert">
-                                    {error}
+                                    {error3}
                                 </div>
                             )}
-                            <form onSubmit={handleSubmit}>
-                                <div className="d-flex">
-                                    <input
-                                        type="file"
-                                        className="form-control form-control-sm"
-                                        id="imageUser"
-                                        name="imageUser"
-                                        onChange={(e) => setImageUser(e.target.files)}
-                                    />
-                                    <button className="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleSubmit}>Upload</button>
-                                </div>
-                            </form>
+
+                            <div className="d-flex">
+                                <input
+                                    type="file"
+                                    className="form-control form-control-sm"
+                                    id="imageUser"
+                                    name="imageUser"
+                                    onChange={(e) => setImageUser(e.target.files)}
+                                />
+                                <button className="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleSubmit}>Upload</button>
+                            </div>
+
                             <div className="user-pic">
 
                                 <div className="card rounded-circle m-auto">
@@ -388,7 +432,7 @@ const Editor = () => {
                             <label htmlFor="biography" className="col-form-label">Biography</label>
                         </div>
                         <div className="col-auto">
-                            <textarea class="bio form-control form-control-sm" aria-label="With textarea" value={biography} onChange={handleBiography}></textarea>
+                            <textarea className="bio form-control form-control-sm" aria-label="With textarea" value={biography} onChange={handleBiography}></textarea>
                         </div>
                         <div className="col-auto">
                             <span id="biographyInline" className="form-text">
@@ -398,11 +442,11 @@ const Editor = () => {
                     </div>
                 </div>
                 <div className="col-auto d-flex mt-5">
-                    <button type="submit" class="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleUpdateUser}>Submit</button>
+                    <button type="submit" className="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleUpdateUser}>Submit</button>
                 </div>
             </form>
             <form className="mx-auto my-5" onSubmit={handleScripts}>
-                <h4 className="mx-5 mb-5">Submit scripts</h4>
+                <h4 className=" mb-5">Submit scripts</h4>
                 <div className="d-block px-5">
                     <div className="row g-3 align-items-center">
                         <div className="col-auto">
@@ -430,31 +474,31 @@ const Editor = () => {
                             </span>
                         </div>
                     </div>
-                    <form>
+
                     <div className="input-group mb-3">
                         <div className="col-auto">
                             <label htmlFor="year" className="col-form-label me-3">Length</label>
                         </div>
-                        <div class="form-check pt-2">
-                            <input class="form-check-input" type="radio" name="length" id="1" value="Short" onChange={(e) => setLength(e.target.value)} />
-                            <label class="form-check-label" for="exampleRadios1">
+                        <div className="form-check pt-2">
+                            <input className="form-check-input" type="radio" name="length" id="1" value="Short" onChange={(e) => setLength(e.target.value)} />
+                            <label className="form-check-label" htmlFor="1">
                                 Short script
                             </label>
                         </div>
-                        <div class="form-check pt-2 mx-3">
-                            <input class="form-check-input" type="radio" name="length" id="2" value="Feature" onChange={(e) => setLength(e.target.value)} />
-                            <label class="form-check-label" for="exampleRadios2">
+                        <div className="form-check pt-2 mx-3">
+                            <input className="form-check-input" type="radio" name="length" id="2" value="Feature" onChange={(e) => setLength(e.target.value)} />
+                            <label className="form-check-label" htmlFor="2">
                                 Feature script
                             </label>
                         </div>
                     </div>
-                    </form>
+
 
 
                     <div className="input-group mb-3">
                         <label htmlFor="genre" className="col-form-label">Genre</label>
                         <select className="genre mx-3 form-select form-select-sm" id="inputGroupSelect01" onChange={(e) => setGenre(e.target.value)}>
-                            <option selected>Choose...</option>
+                            <option defaultValue>Choose...</option>
                             <option value="Action">Action</option>
                             <option value="Biopic">Biopic</option>
                             <option value="Comedy">Comedy</option>
@@ -473,7 +517,7 @@ const Editor = () => {
                             <label htmlFor="logline" className="col-form-label">Logline</label>
                         </div>
                         <div className="col-auto">
-                            <textarea class="form-control form-control-sm" aria-label="With textarea" value={logline} onChange={handleLogline}></textarea>
+                            <textarea className="form-control form-control-sm" aria-label="With textarea" value={logline} onChange={handleLogline}></textarea>
                         </div>
                         <div className="col-auto">
                             <span id="passwordHelpInline" className="form-text">
@@ -482,28 +526,53 @@ const Editor = () => {
                         </div>
                     </div>
 
-                    <div className="row g-3 my-2 mx-3">
+                    <div className="row g-3 my-2">
+                        <div className="col-auto">
+                            <label htmlFor="uploadscript" className="col-form-label">Upload script</label>
+                        </div>
+                        <div className="col d-flex input-group">
+                            {error2 && (
+                                <div className="alert alert-danger" role="alert">
+                                    {error2}
+                                </div>
+                            )}
+
+                            <div className="upscript d-flex">
+                                <input
+                                    type="file"
+                                    className="form-control form-control-sm"
+                                    id="imageUser"
+                                    name="imageUser"
+                                    onChange={(e) => setCurrentScript(e.target.files)}
+                                />
+                                <button className="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleUploadScript}>Upload</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="row g-3">
                         <div className="col-auto">
                             <label htmlFor="firstname" className="col-form-label">Script cover</label>
                         </div>
-                        <div className="col d-flex input-group">
+                        <div className="col flex input-group">
                             {error && (
                                 <div className="alert alert-danger" role="alert">
                                     {error}
                                 </div>
                             )}
-                            <form onSubmit={handleSubmitCover}>
-                                <div className="d-flex">
-                                    <input
-                                        type="file"
-                                        className="form-control form-control-sm"
-                                        id="imageUser"
-                                        name="imageUser"
-                                        onChange={(e) => setScriptCover(e.target.files)}
-                                    />
-                                    <button class="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleSubmitCover}>Upload</button>
-                                </div>
-                            </form>
+
+                            <div className="upcover d-flex">
+                                <input
+                                    type="file"
+                                    className="form-control form-control-sm"
+                                    id="imageUser"
+                                    name="imageUser"
+                                    onChange={(e) => setScriptCover(e.target.files)}
+                                />
+                                <button className="editor_btn btn btn-sm mx-3 rounded-0 border px-3" type="submit" id="submit" onClick={handleSubmitCover}>Upload</button>
+                            </div>
+
                             <div className="user-pic">
 
                                 <div className="card rounded-0 m-auto">
@@ -514,24 +583,12 @@ const Editor = () => {
                                         alt="userpicture"
                                     />
                                 </div>
-
                             </div>
                         </div>
                     </div>
 
-                    <div className="row g-3 align-items-center">
-                        <div className="col-auto">
-                            <label htmlFor="url" className="col-form-label">Url</label>
-                        </div>
-                        <div className="col-auto">
-                            <input type="text" id="url" className="form-control form-control-sm" aria-describedby="url" value={url} onChange={handleUrl} />
-                        </div>
-                        <div className="col-auto">
-                            <span id="passwordHelpInline" className="form-text">
-                                Link to script.
-                            </span>
-                        </div>
-                    </div>
+
+
                 </div>
                 <div className="col-auto d-flex mt-5">
                     <button type="submit" className="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleScripts}>Submit</button>
