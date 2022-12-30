@@ -15,7 +15,7 @@ const Editor = () => {
 
 
     const [user_id, setUser_id] = useState('');
-    const [script_id, setScript_id] = useState(2);
+    const [script_id, setScript_id] = useState(store.scriptId);
     const [image, setImage] = useState('');
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -99,7 +99,7 @@ const Editor = () => {
     }
 
     const submitScript = async () => {
-
+        // if (store.scriptId === '') {
         let url = `http://127.0.0.1:5000/api/scripts`;
         let options_get = {
             method: 'POST',
@@ -123,12 +123,47 @@ const Editor = () => {
             const response = await fetch(url, options_get);
             const data = await response.json()
             console.log(data);
-            console.log('data posted!');
+            console.log('POST data OK!');
 
         } catch (error) {
             console.log(error)
         }
-    };
+
+    }
+
+    /*
+    else {
+        let url = `http://127.0.0.1:5000/api/scripts/${store.user_id}/update`;
+        let options_get = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({
+                title: title,
+                year: year,
+                length: length,
+                genre: genre,
+                logline: logline,
+                cover: cover,
+                uuid: uuid,
+            })
+        }
+        try {
+            //console.log("attempt to fetch")
+            const response = await fetch(url, options_get);
+            const data = await response.json()
+            console.log(data);
+            console.log('PUT data OK!');
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+*/
 
     const updateUser = async () => {
 
@@ -159,6 +194,13 @@ const Editor = () => {
     };
 
     useEffect(() => {
+        const totalScripts = store.userScripts;
+        actions.getUserandScripts();
+        totalScripts && totalScripts.length > 0 ? actions.setScriptId(totalScripts.length + 1) : actions.setScriptId(1);
+        console.log(store.scriptId);
+    }, [])
+
+    useEffect(() => {
         if (store.token && store.token !== "" && store.token !== undefined) {
             actions.getCredentials();
             console.log(store.credentials);
@@ -172,11 +214,11 @@ const Editor = () => {
     })
 
 
-        useEffect(() => {
-            if (!store.token)
-                navigate("/login");
-        })
-    
+    useEffect(() => {
+        if (!store.token)
+            navigate("/login");
+    })
+
 
 
     const handleSubmit = (e) => {
@@ -210,14 +252,19 @@ const Editor = () => {
                     cache: "no-cache",
                 }
             );
-
-            if (response.status === 200) getImageUser();
+            const data = await response.json();
+            console.log(data);
+            setPhotoUser(data);
+            setImage(data.filename);
+            if (response.status === 200) console.log('user image upload was a success!')
 
         } catch (error) {
             setError("Error uploading image");
             console.log(error.message);
         }
     };
+
+    /*
 
     const getImageUser = async () => {
         try {
@@ -235,18 +282,20 @@ const Editor = () => {
         }
     };
 
+    */
+
     const handleSubmitCover = (e) => {
         e.preventDefault();
 
         if (scriptcover !== null) {
             console.log("handlesubmitCover");
-            const formData = new FormData();
+            const formData2 = new FormData();
             console.log(script_id);
             console.log(scriptcover[0]);
-            formData.append("script_id", script_id);
-            formData.append("image", scriptcover[0]);
-            console.log(formData);
-            uploadCover(formData);
+            formData2.append("script_id", parseInt(script_id));
+            formData2.append("image", scriptcover[0]);
+            console.log(formData2);
+            uploadCover(formData2);
             setError(null);
             resetTarget();
         } else {
@@ -254,20 +303,28 @@ const Editor = () => {
         }
     };
 
-    const uploadCover = async (formData) => {
+    const uploadCover = async (formData2) => {
         console.log("upload cover");
         try {
             const response = await fetch(
                 `http://127.0.0.1:5000/api/cover`,
                 {
                     method: "POST",
-                    body: formData,
+                    body: formData2,
                     mode: "cors",
                     cache: "no-cache",
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Access-Control-Allow-Origin": "*",
+                        Authorization: "Bearer " + store.token,
+                    },
                 }
             );
-
-            if (response.status === 200) getScriptCover();
+            const data = await response.json();
+            console.log(data);
+            setCurrentCover(data);
+            setCover(data.filename);
+            if (response.status === 200) console.log("Cover upload was a success!")
 
         } catch (error) {
             setError("Error uploading image");
@@ -275,23 +332,35 @@ const Editor = () => {
         }
     };
 
+    /*
+
     const getScriptCover = async () => {
+        const url = `http://127.0.0.1:5000/api/cover`;
+        const options_get = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                Authorization: "Bearer " + store.token,
+            },
+        };
         try {
-            const response = await fetch(
-                `http://127.0.0.1:5000/api/cover/${script_id}`
-            );
+            const response = await fetch(url, options_get);
             const data = await response.json();
-
-            if (data?.msg !== 'Script has no cover!') {
-                setCurrentCover(data);
-                setCover(data.filename);
-                console.log(data.filename);
-            }
-
+            console.log(data);
+            let value = parseInt(script_id);
+            let value2 = parseInt(user_id);
+            const filterdata = data.filter(elem => elem.script_id === value && elem.user_id === value2);
+            const filtercover = filterdata[filterdata.length - 1];
+            setCurrentCover(filtercover);
+            setCover(filtercover.filename)
+            console.log(filtercover.filename)
         } catch (error) {
             console.log(error.message);
         }
     };
+
+    */
 
     const handleDelete = async () => {
         let url = `http://127.0.0.1:5000/api/user/${user_id}/delete`;

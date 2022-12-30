@@ -67,9 +67,9 @@ export const ScriptList = () => {
                 {
                     !!currentscript && currentscript.length > 0 ? (currentscript.map((script, i) => {
                         return (
-                            <div className='row'>
+                            <div className='row' key={i}>
                                 <div className='col'>
-                                    <h4 key={i}>{script.title.toUpperCase()} {script.year} {script.genre}</h4>
+                                    <h4>{script.title.toUpperCase()} {script.year} {script.genre}</h4>
                                     <p className='logline w-75 mb-0'>
                                         {script.logline}
                                     </p>

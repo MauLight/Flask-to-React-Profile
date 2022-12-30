@@ -184,7 +184,18 @@ def getuserpictures(user_id):
         return jsonify(data), 200
 
 
+@bpUsers.route('/cover', methods=['GET'])
+@jwt_required()
+def get_all_covers():
+
+    covers = Scriptcover.query.all()
+    # rememeber to change to "serialize before deployment".
+    covers = list(map(lambda cover: cover.serialize(), covers))
+    return jsonify(covers), 200
+
+
 @bpUsers.route('/cover', methods=['POST'])
+@jwt_required()
 def scriptcover():
 
     script_id = request.form['script_id']
@@ -206,7 +217,7 @@ def get_or_update_scriptcover(script_id):
 
         if script_id is not None:
             scriptcover = Scriptcover.query.filter_by(
-                script_id=script_id).first()
+                script_id=script_id)
             print(scriptcover)
             if not scriptcover:
                 return jsonify({"msg": "Script has no cover!"}), 400

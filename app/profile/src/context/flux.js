@@ -2,16 +2,18 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
-      
+
       user_id: null,
-      
+
       scriptId: '',
-      
+
       hasScripts: true,
 
       message: null,
 
       credentials: '',
+
+      userScripts: [],
 
       demo: [
         {
@@ -82,7 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       hasScripts: () => {
-        setStore({hasScripts: false});
+        setStore({ hasScripts: false });
       },
 
       getMessage: async () => {
@@ -102,6 +104,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) =>
             console.log("Error loading message from backend", error)
           );
+      },
+
+      getUserandScripts: async () => {
+        const store = getStore();
+        const url = `http://127.0.0.1:5000/api/user/${store.user_id}`;
+        const opts = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            Authorization: "Bearer " + store.token,
+          },
+        }
+        try {
+          const response = await fetch(url, opts);
+          const data = await response.json();
+          console.log(data)
+          setStore({ userScripts: data.myscripts })
+        }
+        catch(error) {
+          console.log(error);
+        }
       },
 
       getCredentials: async () => {
