@@ -125,6 +125,11 @@ p {
   color: white !important;
 }
 
+.editor_btn2:hover {
+  background-color: #9f1717 !important;
+  color: white !important;
+}
+
 .bio {
   width: 172px !important;
 }
@@ -192,4 +197,8 @@ p {
   display: block;
   font-size: 12px;
   margin: 0% !important;
+}
+
+.profile_pic {
+  padding: inherit !important;
 }

@@ -117,7 +117,6 @@ const Editor = () => {
         updateUser();
     }
 
-
     //FORM SUBMIT
     const submitScript = async () => {
         let url = `http://127.0.0.1:5000/api/scripts`;
@@ -179,34 +178,6 @@ const Editor = () => {
             console.log(error)
         }
     };
-
-    //USEEFFECT    
-    useEffect(() => {
-        actions.getUserandScripts();
-        const totalScripts = store.userScripts;
-
-        totalScripts && totalScripts.length > 0 ? actions.setScriptId(parseInt(totalScripts[totalScripts.length - 1].id) + 1) : actions.setScriptId(1);
-        console.log(store.scriptId);
-        setScript_id(store.scriptId);
-    }, [script_id])
-
-    useEffect(() => {
-        if (store.token && store.token !== "" && store.token !== undefined) {
-            actions.getCredentials();
-            console.log(store.credentials);
-        }
-    }, [store.token]);
-
-    useEffect(() => {
-        if (store.credentials && store.credentials !== "" && store.credentials !== undefined) {
-            handleUser_Id();
-        }
-    })
-
-    useEffect(() => {
-        if (!store.token)
-            navigate("/login");
-    })
 
     //IMAGE HANDLERS
     const handleSubmit = (e) => {
@@ -319,9 +290,38 @@ const Editor = () => {
     }
 
     const handleUploadScript = (value) => {
-        setUuid(value.uuid);
+        console.log(value);
+        setUuid(value.cdnUrl);
         resetTarget();
     }
+
+    //USEEFFECT    
+    useEffect(() => {
+        actions.getUserandScripts();
+        const totalScripts = store.userScripts;
+
+        totalScripts && totalScripts.length > 0 ? actions.setScriptId(parseInt(totalScripts[totalScripts.length - 1].id) + 1) : actions.setScriptId(1);
+        console.log(store.scriptId);
+        setScript_id(store.scriptId);
+    }, [script_id]);
+
+    useEffect(() => {
+        if (store.token && store.token !== "" && store.token !== undefined) {
+            actions.getCredentials();
+            console.log(store.credentials);
+        }
+    }, [store.token]);
+
+    useEffect(() => {
+        if (store.credentials && store.credentials !== "" && store.credentials !== undefined) {
+            handleUser_Id();
+        }
+    });
+
+    useEffect(() => {
+        if (!store.token)
+            navigate("/login");
+    });
 
     return (
         <div className="d-grid">
@@ -568,7 +568,7 @@ const Editor = () => {
                         <label htmlFor="url" className="col-form-label">Delete User</label>
                     </div>
                     <div className="col-auto">
-                        <button type="submit" className="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleDelete}>Delete</button>
+                        <button type="submit" className="editor_btn2 btn mx-auto border rounded-0 px-3" onClick={handleDelete}>Delete</button>
                     </div>
                     <div className="col-auto">
                         <span id="passwordHelpInline" className="form-text">

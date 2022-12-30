@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Context } from "../context/appContext";
 import { Link } from "react-router-dom";
 import { arr } from "../array";
 
 const Home = () => {
+
+    const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
+    const [allusers, setAllusers] = useState(store.allUsers);
+
+    console.log(allusers);
 
     const rounded = {
         borderRadius: '100%',
@@ -11,6 +19,15 @@ const Home = () => {
         height: '250px',
         objectPosition: 'top'
     }
+
+useEffect (() => {
+    actions.getUsers();
+}, []);
+
+useEffect (() => {
+    setAllusers(store.allUsers);
+    console.log(allusers);
+});
 
     return (
         <div className="container-fluid px-5">
@@ -22,7 +39,7 @@ const Home = () => {
                 </div>
 
                 {
-                    !!arr && arr.length > 0 && arr.map((user, i) => {
+                    !!allusers && allusers.length > 0 && allusers.map((user, i) => {
                         return (
                             <div className='col-3 justify-content-center p-3' key={i}>
                                 <div className="trip_card card border-0 rounded-0 pt-2 mb-5">

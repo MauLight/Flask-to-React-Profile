@@ -3,6 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
 
+      allUsers: [],
+
       user_id: null,
 
       scriptId: '',
@@ -12,6 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       message: null,
 
       credentials: '',
+
+      user: {},
 
       userScripts: [],
 
@@ -38,7 +42,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: async (email, password) => {
         console.log(email);
         console.log(password);
-
+        const store = getStore();
         const opts = {
           method: "POST",
           headers: {
@@ -66,6 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("access_token: " + data.token);
           sessionStorage.setItem("token", data.token);
           setStore({ token: data.token, user_id: data.user_id });
+          console.log(store.user_id);
           return true;
         } catch (error) {
           console.error("There was an error in your request");
@@ -106,8 +111,32 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
       },
 
+      getUsers: async () => {
+        const store = getStore();
+        const url = `http://127.0.0.1:5000/api/users`;
+        const opts = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            Authorization: "Bearer " + store.token,
+          },
+        }
+        try {
+          const response = await fetch(url, opts);
+          const data = await response.json();
+          console.log(data);
+          setStore({ allUsers: data });
+          console.log(store.allUsers);
+        }
+        catch (error) {
+          console.log(error);
+        }
+      },
+
       getUserandScripts: async () => {
         const store = getStore();
+        console.log(store.user_id);
         const url = `http://127.0.0.1:5000/api/user/${store.user_id}`;
         const opts = {
           method: "GET",
@@ -121,9 +150,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           const response = await fetch(url, opts);
           const data = await response.json();
           console.log(data)
+          setStore({ user: data })
+          console.log(store.user);
           setStore({ userScripts: data.myscripts })
+          setStore({ user_id: data.id })
         }
-        catch(error) {
+        catch (error) {
           console.log(error);
         }
       },
@@ -143,9 +175,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         )
           .then((resp) => resp.json())
           .then((data) => setStore({ credentials: data.user }))
+
           .catch((error) =>
             console.log("Error loading message from backend", error)
           );
+        console.log(store.credentials);
       },
     },
   };

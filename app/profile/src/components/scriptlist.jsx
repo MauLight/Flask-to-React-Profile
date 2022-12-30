@@ -40,7 +40,8 @@ export const ScriptList = () => {
     useEffect(() => {
         if (store.credentials && store.credentials !== "" && store.credentials !== undefined) {
             handleUser_Id();
-            setUserScripts(arr[1].myscripts);
+            console.log(store.user);
+            setUserScripts(store.user.myscripts);
         }
     });
 

@@ -73,6 +73,7 @@ const Login = () => {
             //actions.getCredentials()
             //console.log(store.crendentials)
             //actions.getUserId();
+            actions.getUsers();
             navigate("/editor");
         }
     })
