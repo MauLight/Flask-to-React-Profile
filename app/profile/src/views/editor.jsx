@@ -13,25 +13,36 @@ const Editor = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
 
-
+    //CURRENT USER VARIABLES
     const [user_id, setUser_id] = useState('');
     const [script_id, setScript_id] = useState(store.scriptId);
+
+    //USER UPDATE VARIABLES
     const [image, setImage] = useState('');
+    const [username, setUsername] = useState('');
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [biography, setBiography] = useState('');
+    const [updateuserok, setUpdatedUserOk] = useState('noupdate')
+
+    //SCRIPT UPDATE/POST VARIABLES
     const [title, setTitle] = useState('');
     const [year, setYear] = useState('');
     const [length, setLength] = useState('');
     const [genre, setGenre] = useState('');
     const [logline, setLogline] = useState('');
     const [cover, setCover] = useState('');
+    const [updatescriptok, setUpdatedscriptOk] = useState('noupdate')
+
+    //IMAGES VARIABLES
     const [scriptcover, setScriptCover] = useState('');
     const [inputkey, setInputKey] = useState('');
     const [imageUser, setImageUser] = useState(null);
     const [photoUser, setPhotoUser] = useState(null);
     const [currentcover, setCurrentCover] = useState(null);
     const [uuid, setUuid] = useState('');
+
+    //ERROR VARIABLES
     const [error, setError] = useState(null);
     const [error2, setError2] = useState(null);
     const [error3, setError3] = useState(null);
@@ -39,15 +50,23 @@ const Editor = () => {
     console.log(currentcover);
     console.log(genre);
 
+    //TARGET.FILES CLEANER
     const resetTarget = () => {
         let randomString = Math.random().toString(36);
 
         setInputKey(randomString);
     };
 
+    //EVENT HANDLERS
     const handleUser_Id = () => {
         setUser_id(store.user_id);
         console.log(user_id);
+    }
+
+    const handleUsername = (e) => {
+        e.preventDefault();
+        console.log(e.target.value);
+        setUsername(e.target.value);
     }
 
     const handleFirstname = (e) => {
@@ -98,8 +117,9 @@ const Editor = () => {
         updateUser();
     }
 
+
+    //FORM SUBMIT
     const submitScript = async () => {
-        // if (store.scriptId === '') {
         let url = `http://127.0.0.1:5000/api/scripts`;
         let options_get = {
             method: 'POST',
@@ -119,7 +139,6 @@ const Editor = () => {
             })
         }
         try {
-            //console.log("attempt to fetch")
             const response = await fetch(url, options_get);
             const data = await response.json()
             console.log(data);
@@ -131,40 +150,6 @@ const Editor = () => {
 
     }
 
-    /*
-    else {
-        let url = `http://127.0.0.1:5000/api/scripts/${store.user_id}/update`;
-        let options_get = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({
-                title: title,
-                year: year,
-                length: length,
-                genre: genre,
-                logline: logline,
-                cover: cover,
-                uuid: uuid,
-            })
-        }
-        try {
-            //console.log("attempt to fetch")
-            const response = await fetch(url, options_get);
-            const data = await response.json()
-            console.log(data);
-            console.log('PUT data OK!');
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
-
-*/
-
     const updateUser = async () => {
 
         let url = `http://127.0.0.1:5000/api/user/${user_id}/update`;
@@ -175,6 +160,7 @@ const Editor = () => {
                 'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({
+                username: username,
                 firstname: firstname,
                 lastname: lastname,
                 biography: biography,
@@ -187,12 +173,14 @@ const Editor = () => {
             const data = await response.json()
             console.log(data);
             console.log('data posted!');
+            if (response.status === 200) setUpdatedUserOk('update')
 
         } catch (error) {
             console.log(error)
         }
     };
 
+    //USEEFFECT    
     useEffect(() => {
         actions.getUserandScripts();
         const totalScripts = store.userScripts;
@@ -215,14 +203,12 @@ const Editor = () => {
         }
     })
 
-
     useEffect(() => {
         if (!store.token)
             navigate("/login");
     })
 
-
-
+    //IMAGE HANDLERS
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -266,26 +252,6 @@ const Editor = () => {
         }
     };
 
-    /*
-
-    const getImageUser = async () => {
-        try {
-            const response = await fetch(
-                `http://127.0.0.1:5000/api/uploads/${user_id}`
-            );
-            const data = await response.json();
-
-            if (data?.msg !== 'User has no picture!') {
-                setPhotoUser(data);
-            }
-
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
-
-    */
-
     const handleSubmitCover = (e) => {
         e.preventDefault();
 
@@ -325,7 +291,7 @@ const Editor = () => {
             console.log(data);
             setCurrentCover(data);
             setCover(data.filename);
-            if (response.status === 200) console.log("Cover upload was a success!")
+            if (response.status === 200) setUpdatedscriptOk('update')
 
         } catch (error) {
             setError("Error uploading image");
@@ -333,36 +299,7 @@ const Editor = () => {
         }
     };
 
-    /*
-
-    const getScriptCover = async () => {
-        const url = `http://127.0.0.1:5000/api/cover`;
-        const options_get = {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json',
-                "Access-Control-Allow-Origin": "*",
-                Authorization: "Bearer " + store.token,
-            },
-        };
-        try {
-            const response = await fetch(url, options_get);
-            const data = await response.json();
-            console.log(data);
-            let value = parseInt(script_id);
-            let value2 = parseInt(user_id);
-            const filterdata = data.filter(elem => elem.script_id === value && elem.user_id === value2);
-            const filtercover = filterdata[filterdata.length - 1];
-            setCurrentCover(filtercover);
-            setCover(filtercover.filename)
-            console.log(filtercover.filename)
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
-
-    */
-
+    //DELETE USER
     const handleDelete = async () => {
         let url = `http://127.0.0.1:5000/api/user/${user_id}/delete`;
         let options_delete = {
@@ -435,10 +372,18 @@ const Editor = () => {
                     </div>
                     <div className="row g-3 align-items-center mx-3">
                         <div className="col-auto">
+                            <label htmlFor="username" className="col-form-label">Username</label>
+                        </div>
+                        <div className="col-auto">
+                            <input type="text" id="username" className="form-control form-control-sm" aria-describedby="username" value={username} onChange={handleUsername} />
+                        </div>
+                    </div>
+                    <div className="row g-3 align-items-center mx-3">
+                        <div className="col-auto">
                             <label htmlFor="firstname" className="col-form-label">Firstname</label>
                         </div>
                         <div className="col-auto">
-                            <input type="text" id="title" className="form-control form-control-sm" aria-describedby="firstname" value={firstname} onChange={handleFirstname} />
+                            <input type="text" id="firstname" className="form-control form-control-sm" aria-describedby="firstname" value={firstname} onChange={handleFirstname} />
                         </div>
                     </div>
                     <div className="row g-3 align-items-center mx-3">
@@ -446,7 +391,7 @@ const Editor = () => {
                             <label htmlFor="lastname" className="col-form-label">Lastname</label>
                         </div>
                         <div className="col-auto">
-                            <input type="text" id="title" className="form-control form-control-sm" aria-describedby="lastname" value={lastname} onChange={handleLastname} />
+                            <input type="text" id="lastname" className="form-control form-control-sm" aria-describedby="lastname" value={lastname} onChange={handleLastname} />
                         </div>
                     </div>
                     <div className="row g-3 align-items-center mx-3">
@@ -461,9 +406,11 @@ const Editor = () => {
                                 Max 500 characters.
                             </span>
                         </div>
+                        <p className={updateuserok}>User update successful.</p>
                     </div>
                 </div>
                 <div className="col-auto d-flex mt-5">
+
                     <button type="submit" className="editor_btn btn mx-auto border rounded-0 px-3" onClick={handleUpdateUser}>Submit</button>
                 </div>
             </form>
@@ -605,6 +552,7 @@ const Editor = () => {
                                 </div>
                             </div>
                         </div>
+                        <p className={updatescriptok}>Script update successful.</p>
                     </div>
 
 

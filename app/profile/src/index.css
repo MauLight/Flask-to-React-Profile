@@ -184,3 +184,12 @@ p {
   padding: 5px !important;
   border-radius: 4px !important;
 }
+
+.noupdate {
+  display: none;
+}
+.update {
+  display: block;
+  font-size: 12px;
+  margin: 0% !important;
+}

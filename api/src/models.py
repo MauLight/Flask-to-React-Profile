@@ -36,7 +36,7 @@ class User(db.Model):
             "username": self.username,
             "firstname": self.firstname,
             "lastname": self.lastname,
-            'userpicture': [pic.serialize() for pic in self.userpicture],
+            "image": self.image,
             'myscripts': [script.serialize() for script in self.myscripts]
         }
 
@@ -48,6 +48,7 @@ class User(db.Model):
             "username": self.username,
             "firstname": self.firstname,
             "lastname": self.lastname,
+            "image": self.image,
             'userpicture': [pic.serialize() for pic in self.userpicture]
         }
 

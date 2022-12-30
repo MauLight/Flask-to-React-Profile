@@ -44,12 +44,14 @@ def post_new_user():
 @bpUsers.route('/user/<int:id>/update', methods=['PUT'])
 def update_user(id):
 
+    username = request.json.get('username')  # type: ignore
     firstname = request.json.get('firstname')  # type: ignore
     lastname = request.json.get('lastname')  # type: ignore
     biography = request.json.get('biography')  # type: ignore
     image = request.json.get('image')  # type: ignore
 
     user = User.query.get(id)
+    user.username = username
     user.firstname = firstname
     user.lastname = lastname
     user.biography = biography
