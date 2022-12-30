@@ -169,10 +169,11 @@ p {
 .errors {
   font-size: 12px;
 }
-
+/*
 .uploadcare--menu__items {
   display: none !important;
 }
+*/
 
 .scriptlist {
   background-color: #e9ecef !important;

@@ -194,11 +194,13 @@ const Editor = () => {
     };
 
     useEffect(() => {
-        const totalScripts = store.userScripts;
         actions.getUserandScripts();
-        totalScripts && totalScripts.length > 0 ? actions.setScriptId(totalScripts.length + 1) : actions.setScriptId(1);
+        const totalScripts = store.userScripts;
+
+        totalScripts && totalScripts.length > 0 ? actions.setScriptId(parseInt(totalScripts[totalScripts.length - 1].id) + 1) : actions.setScriptId(1);
         console.log(store.scriptId);
-    }, [])
+        setScript_id(store.scriptId);
+    }, [script_id])
 
     useEffect(() => {
         if (store.token && store.token !== "" && store.token !== undefined) {
@@ -292,7 +294,7 @@ const Editor = () => {
             const formData2 = new FormData();
             console.log(script_id);
             console.log(scriptcover[0]);
-            formData2.append("script_id", parseInt(script_id));
+            formData2.append("script_id", script_id);
             formData2.append("image", scriptcover[0]);
             console.log(formData2);
             uploadCover(formData2);
@@ -314,8 +316,7 @@ const Editor = () => {
                     mode: "cors",
                     cache: "no-cache",
                     headers: {
-                        'Content-type': 'application/json',
-                        "Access-Control-Allow-Origin": "*",
+
                         Authorization: "Bearer " + store.token,
                     },
                 }

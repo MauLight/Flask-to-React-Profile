@@ -184,8 +184,8 @@ def getuserpictures(user_id):
         return jsonify(data), 200
 
 
-@bpUsers.route('/cover', methods=['GET'])
-@jwt_required()
+@bpUsers.route('/covers', methods=['GET'])
+#@jwt_required()
 def get_all_covers():
 
     covers = Scriptcover.query.all()
