@@ -112,6 +112,7 @@ p {
   -webkit-filter: grayscale(100%);
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
+  transition: all 0.3s ease !important;
 }
 
 .cover:hover {
@@ -120,7 +121,15 @@ p {
   filter: grayscale(0%);
 }
 
-.editor_btn:hover {
+.toggle-btn:active {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+
+
+.cover:hover {
   background-color: #333333 !important;
   color: white !important;
 }
